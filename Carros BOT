@@ -1,0 +1,62 @@
+using UnityEngine;
+
+public class CarroControle : MonoBehaviour
+{
+    public float velocidade = 5f;
+    public Transform[] waypoints;
+    private int waypointAtual = 0;
+
+    void Start()
+    {
+        if (waypoints.Length > 0)
+        {
+            // Inicia o carro na primeira waypoint
+            transform.position = waypoints[0].position;
+            // Inicialmente, faz o carro olhar para a segunda waypoint
+            transform.LookAt(waypoints[1].position);
+        }
+        else
+        {
+            Debug.LogError("Não há waypoints atribuídas ao carro.");
+            enabled = false; // Desativa o script se não houver waypoints
+        }
+    }
+
+    void Update()
+    {
+        MoveTowardsWaypoint();
+    }
+
+    void MoveTowardsWaypoint()
+    {
+        // Verifica se há mais waypoints
+        if (waypointAtual < waypoints.Length)
+        {
+            // Move o carro em direção à waypoint atual
+            transform.position = Vector3.MoveTowards(transform.position, waypoints[waypointAtual].position, velocidade * Time.deltaTime);
+
+            // Verifica se o carro chegou à waypoint atual
+            float distanceToWaypoint = Vector3.Distance(transform.position, waypoints[waypointAtual].position);
+            if (distanceToWaypoint < 0.1f)
+            {
+                // Move para a próxima waypoint
+                waypointAtual++;
+
+                // Verifica se há mais waypoints antes de chamar LookAt
+                if (waypointAtual < waypoints.Length - 1)
+                {
+                    // O carro agora olha para a próxima waypoint
+                    transform.LookAt(waypoints[waypointAtual].position);
+                }
+            }
+        }
+        else
+        {
+            // O carro atingiu todas as waypoints
+            Debug.Log("Carro chegou ao destino.");
+            gameObject.SetActive(false); // Desativa o objeto do carro
+        }
+    }
+}
+
+
