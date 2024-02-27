@@ -1,0 +1,37 @@
+using UnityEngine;
+using UnityEngine.UI;
+
+public class TelaQuiz : MonoBehaviour
+{
+    [SerializeField] public GameObject respostaCertaPanel;
+    [SerializeField]public GameObject respostaErradaPanel;
+    [SerializeField] public GameObject perguntaPanel; 
+
+
+    public void MostrarRespostaCerta()
+    {
+        respostaCertaPanel.SetActive(true);
+        respostaErradaPanel.SetActive(false);
+        perguntaPanel.SetActive(false); // Esconde o painel da pergunta ao mostrar a resposta certa
+    }
+
+    public void MostrarRespostaErrada()
+    {
+        respostaCertaPanel.SetActive(false);
+        respostaErradaPanel.SetActive(true);
+    }
+
+    public void JogarNovamente()
+    {
+        respostaErradaPanel.SetActive(false);
+        perguntaPanel.SetActive(true); // Mostra o painel da pergunta ao jogar novamente
+    }
+
+    public void SairJogo()
+    {
+        Debug.Log("Sair do jogo");
+        Application.Quit();
+    }
+}
+
+
