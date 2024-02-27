@@ -1,0 +1,30 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CONTROLECARRO : MonoBehaviour
+{
+    public float velocidade = 9.0f; // Velocidade do carro
+    public float velocidadeRotacao = 90.0f; // Velocidade de rotação do carro
+    private Rigidbody rb;
+    
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
+
+    void FixedUpdate()
+    {
+        // Captura os inputs do jogador
+        float movimentoVertical = Input.GetAxis("Vertical"); // Setas para cima (1 para frente, 0 para parar)
+        float movimentoHorizontal = Input.GetAxis("Horizontal"); // Setas para os lados (-1 para esquerda, 1 para direita)
+
+        // Calcula o movimento do carro
+        Vector3 movimento = transform.forward * movimentoVertical * velocidade;
+        Vector3 rotacao = Vector3.up * movimentoHorizontal * velocidadeRotacao * Time.fixedDeltaTime;
+
+        // Aplica o movimento e a rotação ao Rigidbody do carro
+        rb.velocity = movimento;
+        transform.Rotate(rotacao);
+    }
+}
