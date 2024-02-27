@@ -1,0 +1,43 @@
+using UnityEngine;
+
+public class CarController : MonoBehaviour
+{
+    public float accelerationSpeed = 20f;
+    public float brakeSpeed = 10f;
+
+    private Rigidbody carRigidbody;
+
+    void Start()
+    {
+        // Obtém o componente Rigidbody do carro
+        carRigidbody = GetComponent<Rigidbody>();
+    }
+
+    void Update()
+    {
+        // Verifica o input do jogador
+        if (Input.GetKey(KeyCode.Space))
+        {
+            // Acelera para frente
+            Accelerate();
+        }
+        else if (Input.GetKey(KeyCode.LeftShift))
+        {
+            // Freia
+            Brake();
+        }
+    }
+
+    void Accelerate()
+    {
+        // Aplica força para frente para simular aceleração
+        carRigidbody.AddForce(transform.forward * accelerationSpeed, ForceMode.Acceleration);
+    }
+
+    void Brake()
+    {
+        // Aplica força oposta para simular frenagem
+        carRigidbody.AddForce(-carRigidbody.velocity * brakeSpeed, ForceMode.Acceleration);
+    }
+}
+
