@@ -1,0 +1,33 @@
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class MenuQUIZ : MonoBehaviour
+{
+    [SerializeField] private string nomeDoLevelDeJogo;
+    [SerializeField] private GameObject painelMenuInicial;
+    [SerializeField] private GameObject painelComoJogar;
+
+    public void Jogar()
+    {
+        SceneManager.LoadScene(nomeDoLevelDeJogo);
+    }
+
+    public void AbrirComoJogar()
+    {
+        painelMenuInicial.SetActive(false);
+        painelComoJogar.SetActive(true);
+    }
+
+    public void FecharComoJogar()
+    {
+        painelComoJogar.SetActive(false);
+        painelMenuInicial.SetActive(true);
+    }
+
+    public void Voltar()
+    {
+        SceneManager.LoadScene("Menu"); 
+    }
+}
+
+
