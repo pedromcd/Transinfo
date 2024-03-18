@@ -19,4 +19,5 @@ https://drive.google.com/file/d/13AYvYz4le-2nwDpUD5-WO3h5AZPW4Bxg/view?usp=shari
 <img src="https://github.com/YagoL3m3/SagradoMaps/assets/134101420/827d9df5-6a43-4af2-9208-db6ec59db122" width="350px"/>
 </div>
 
-##github ## [@pedromcd](https://github.com/pedromcd)
+## github - [@pedromcd](https://github.com/pedromcd)
+## Linkedin - [https://www.linkedin.com/in/pedro-domingues-126192276/]
